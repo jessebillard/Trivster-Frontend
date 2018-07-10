@@ -28,7 +28,7 @@ class App extends Component {
     .then( (resp) => resp.json())
     .then( (response) =>
       this.setState({
-      gameId: response[10].gameId,
+      gameId: response[10].game_id,
       questions: response.slice(0, 10)
       })
     )
@@ -39,10 +39,10 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.gameId, this.state.questions)
+
     return (
       <div className="App">
-        <GameContainer />
+        <GameContainer questions={this.state.questions} gameId={this.state.gameId}/>
       </div>
     );
   }
