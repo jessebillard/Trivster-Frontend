@@ -8,7 +8,8 @@ class App extends Component {
     super()
 
     this.state = {
-      game: [],
+      gameId: '',
+      questions: []
 
     }
   }
@@ -25,7 +26,12 @@ class App extends Component {
     }
     fetch(url, options)
     .then( (resp) => resp.json())
-    .then( (response) => console.log(response))
+    .then( (response) =>
+      this.setState({
+      gameId: response[10].gameId,
+      questions: response.slice(0, 10)
+      })
+    )
   }
 
   componentDidMount() {
@@ -33,6 +39,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.gameId, this.state.questions)
     return (
       <div className="App">
         <GameContainer />
