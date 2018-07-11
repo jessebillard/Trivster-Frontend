@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 
 import GameContainer from './components/GameContainer'
+import GameForm from './components/GameForm';
 
 class App extends Component {
   constructor() {
@@ -12,11 +13,41 @@ class App extends Component {
       questions: []
 
     }
+
+    this.categories = [
+      {1: "Any Category"},
+      {9: "General Knowledge"},
+      {10: "Books"},
+      {11: "Film"},
+      {12: "Music"},
+      {13: "Musicals & Theatres"},
+      {14: "Television"},
+      {15: "Video Games"},
+      {16: "Board Games"},
+      {17: "Science & Nature"},
+      {18: "Computers"},
+      {19: "Mathematics"},
+      {20: "Mythology"},
+      {21: "Sports"},
+      {22: "Geography"},
+      {23: "History"},
+      {24: "Politics"},
+      {25: "Art"},
+      {26: "Celebrities"},
+      {27: "Animals"},
+      {28: "Vehicles"},
+      {29: "Comics"},
+      {30: "Gadgets"},
+      {31: "Japanese Anime & Manga"},
+      {32: "Cartoon & Animations"}
+    ]
+
   }
 
-  getGame = () => {
+  getGame = (categoryNumber, difficultySelection) => {
     const url = 'http://localhost:3000/api/v1/games'
-    const data = {category: 12, difficulty: 'medium'}
+    const data = {category: categoryNumber, difficulty: difficultySelection.toLowerCase()}
+    // debugger;
     const options = {
       method: "POST",
         headers: {
@@ -35,14 +66,30 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getGame()
+    // this.getGame()
+  }
+
+  gameFormSubmit = (data) => {
+    const category = this.findGameNumber(data)
+    const categoryNumber = parseInt(Object.keys(category).join())
+    const difficultySelection = data.difficulty
+    this.getGame(categoryNumber, difficultySelection)
+  }
+
+  findGameNumber = (data) => {
+    const categoryObj = this.categories.find(category => {
+      return data.category === Object.values(category).join()
+    })
+    return categoryObj
   }
 
   render() {
-
+    // console.log(this.state)
     return (
       <div className="App">
-        <GameContainer questions={this.state.questions} gameId={this.state.gameId}/>
+        {!this.state.gameId ? <GameForm submit={this.gameFormSubmit} categories={this.categories}/> : '' }
+        {/* Render game container if questions or gameId exist */}
+        {this.state.gameId ? <GameContainer questions={this.state.questions} gameId={this.state.gameId}/> : '' }
       </div>
     );
   }
