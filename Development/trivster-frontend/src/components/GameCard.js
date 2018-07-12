@@ -14,20 +14,31 @@ class GameCard extends React.Component {
     }
   }
 
-  randomizeAnswers = (array) => {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
+  shuffle = (array) => {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
+    return array;
+}
 
   generateAnswerButtons = () => {
-
+        return this.shuffle([<AnswerButton onClick={this.answerClick} answer={this.props.question.answer}/>,
+        <AnswerButton onClick={this.answerClick} incorrectAnswer={this.props.question.incorrect_answers[0]} />,
+        <AnswerButton onClick={this.answerClick} incorrectAnswer={this.props.question.incorrect_answers[1]} />,
+        <AnswerButton onClick={this.answerClick} incorrectAnswer={this.props.question.incorrect_answers[2]} />])
   }
 
   answerClick = (e) => {
-    debugger;
+    // debugger;
+    if (e.currentTarget.classList.value.split(" ").indexOf("correct") > 0) {
+      // e.currentTarget.style.color = "green"
+      this.props.incrementScore()
+    } else {
+      // e.currentTarget.style.color = "red"
+    }
   }
   //maybe make this into a class?
   // steps for answers
@@ -37,13 +48,20 @@ class GameCard extends React.Component {
   // -- iterate over this new answers array rendering a list item for each one
   render() {
     console.log(this.props.question)
+    const answerArray = this.generateAnswerButtons()
     return(
       <div>
         <h3 dangerouslySetInnerHTML={{__html: this.props.question.question}} />
-        <AnswerButton onClick={this.answerClick} answer={this.props.question.answer}/>
+        {/* somehow shuffle these answer buttons! */}
+        {/* get them to use dangerouslySetInnerHTML to format answers correctly */}
+        {answerArray[0]}
+        {answerArray[1]}
+        {answerArray[2]}
+        {answerArray[3]}
+        {/* <AnswerButton onClick={this.answerClick} answer={this.props.question.answer}/>
         <AnswerButton onClick={this.answerClick} incorrectAnswer={this.props.question.incorrect_answers[0]} />
         <AnswerButton onClick={this.answerClick} incorrectAnswer={this.props.question.incorrect_answers[1]} />
-        <AnswerButton onClick={this.answerClick} incorrectAnswer={this.props.question.incorrect_answers[2]} />
+        <AnswerButton onClick={this.answerClick} incorrectAnswer={this.props.question.incorrect_answers[2]} /> */}
         {/* <p dangerouslySetInnerHTML={{__html: this.props.question.answer}} /> */}
       </div>
     )

@@ -4,9 +4,9 @@ import { Button } from 'semantic-ui-react'
 const AnswerButton = (props) => {
     // debugger;
     if (props.answer) {
-        return <Button onClick={props.onClick} >Correct Answer</Button>
+        return <Button className="correct" onClick={props.onClick}>{props.answer}</Button>
     } else if (props.incorrectAnswer) {
-        return <Button onClick={props.onClick} >Incorrect Answer</Button> 
+        return <Button className="incorrect" onClick={props.onClick}>{props.incorrectAnswer}</Button>
     }
 }
 
