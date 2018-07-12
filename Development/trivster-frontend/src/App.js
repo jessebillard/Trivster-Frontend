@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import { Menu } from 'semantic-ui-react'
 
 import GameContainer from './components/GameContainer'
 import GameForm from './components/GameForm';
@@ -36,7 +37,7 @@ class App extends Component {
       {26: "Celebrities"},
       {27: "Animals"},
       {28: "Vehicles"},
-      {29: "Comics"},
+      // {29: "Comics"},
       {30: "Gadgets"},
       {31: "Japanese Anime & Manga"},
       {32: "Cartoon & Animations"}
@@ -93,6 +94,9 @@ class App extends Component {
     // console.log(this.state)
     return (
       <div className="App">
+        <Menu inverted>
+          <Menu.Item name="Trivster!"/>
+        </Menu>
         {!this.state.gameId ? <GameForm submit={this.gameFormSubmit} categories={this.categories}/> : '' }
         {/* Render game container if questions or gameId exist */}
         {this.state.gameId ? <GameContainer questions={this.state.questions} resetGame={this.resetGame} gameId={this.state.gameId}/> : '' }

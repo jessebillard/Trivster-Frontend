@@ -57,20 +57,21 @@ class GameForm extends React.Component {
 
     categoriesArray = () => {
         const newCategories = this.props.categories.map(category => {
-            return {'text': Object.values(category).join()}
+            const option =  Object.values(category).join()
+            return {'value': option, 'text': option}
         })
         return newCategories
     }
 
 
     render() {
-        const difficulties = [{text: "Easy"}, {text: "Medium"}, {text: "Hard"}]
+        const difficulties = [{text: "Easy", value:"Easy"}, {text: "Medium", value:"Medium"}, {text: "Hard", value:"Hard"}]
         console.log(this.state)
         return(
             <div style={{margin: '2rem'}}>
-                <Select placeholder="Select Category" onChange={this.handleCategory} selection options={this.categoriesArray()} />
+                <Select placeholder="Select Category" value={this.state.category} onChange={this.handleCategory} selection options={this.categoriesArray()} />
                 {/* <Select placeholder='Select your country' options={difficulties} /> */}
-                <Select placeholder="Select Difficulty" options={difficulties} selection onChange={this.handleDifficulty} />
+                <Select placeholder="Select Difficulty" value={this.state.difficulty} options={difficulties} selection onChange={this.handleDifficulty} />
                 <Button content="Start Game!" onClick={this.onSubmit}/>
             </div>
         )

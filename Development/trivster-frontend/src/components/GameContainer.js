@@ -20,8 +20,8 @@ class GameContainer extends Component {
     const newScore = this.state.score
     this.setState({
       score: newScore + 1
-    }, () => console.log(this.state))
-    this.incrementCurrentQuestion()
+    }, () => this.incrementCurrentQuestion())
+    // this.incrementCurrentQuestion()
   }
 
   nextQuestionWhenWrong = () => {
@@ -32,7 +32,7 @@ class GameContainer extends Component {
     // find the this.state.currentQuestion's index from this.props.questions, then increment that number and set state again.
     const index = this.props.questions.indexOf(this.state.currentQuestion)
     console.log(index)
-    if (index > 8) {
+    if (index === 9) {
       this.playAgain()
     } else {
       this.setState({
@@ -42,6 +42,7 @@ class GameContainer extends Component {
   }
 
   playAgain = () => {
+    alert(`Your Final Score Is: ${this.state.score} / 10`)
     this.props.resetGame()
   }
 
@@ -64,12 +65,12 @@ class GameContainer extends Component {
     })
   }
 
-  questionDelayRender = (questions) => {
-    // for (let i = 0; i < questions.length; i++) {
-    //   let promise = new Promise()
-    //   setTimeout(this.questionRender(questions[i]), 5000)
-    // }
-  }
+  // questionDelayRender = (questions) => {
+  //   // for (let i = 0; i < questions.length; i++) {
+  //   //   let promise = new Promise()
+  //   //   setTimeout(this.questionRender(questions[i]), 5000)
+  //   // }
+  // }
 
 //set a timeout method to increment release of gameCards
 // show correct or incorrect answers
@@ -95,16 +96,7 @@ class GameContainer extends Component {
     
     return (
       <div>
-        {/* {this.questionDelayRender(this.props.questions)} */}
-       
-          {this.state.currentQuestion ? this.questionRender(this.state.currentQuestion) : ''}
-          {/* {this.props.questions.map( (question) =>
-           <GameCard key={question.id} 
-              incrementScore={this.incrementScore} 
-              question={question} 
-              gameId={this.props.gameId}
-            />
-        )} */}
+        {this.state.currentQuestion ? this.questionRender(this.state.currentQuestion) : ''}
         <ScoreCard score={this.state.score} />
     </div>
     );
