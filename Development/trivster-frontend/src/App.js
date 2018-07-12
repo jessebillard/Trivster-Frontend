@@ -83,13 +83,19 @@ class App extends Component {
     return categoryObj
   }
 
+  resetGame = () => {
+    this.setState({
+      gameId: ''
+    })
+  }
+
   render() {
     // console.log(this.state)
     return (
       <div className="App">
         {!this.state.gameId ? <GameForm submit={this.gameFormSubmit} categories={this.categories}/> : '' }
         {/* Render game container if questions or gameId exist */}
-        {this.state.gameId ? <GameContainer questions={this.state.questions} gameId={this.state.gameId}/> : '' }
+        {this.state.gameId ? <GameContainer questions={this.state.questions} resetGame={this.resetGame} gameId={this.state.gameId}/> : '' }
       </div>
     );
   }

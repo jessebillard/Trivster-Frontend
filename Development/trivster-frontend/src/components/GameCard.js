@@ -14,6 +14,10 @@ class GameCard extends React.Component {
     }
   }
 
+  componentDidMount() {
+    // setTimeout here?
+  }
+
   shuffle = (array) => {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -34,9 +38,12 @@ class GameCard extends React.Component {
   answerClick = (e) => {
     // debugger;
     if (e.currentTarget.classList.value.split(" ").indexOf("correct") > 0) {
+      //how to change color?! semantic ui react is again being a B
       // e.currentTarget.style.color = "green"
       this.props.incrementScore()
     } else {
+        this.props.nextQuestionWhenWrong()
+      // still need to update current question
       // e.currentTarget.style.color = "red"
     }
   }
