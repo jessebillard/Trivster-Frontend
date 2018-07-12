@@ -69,6 +69,7 @@ class GameForm extends React.Component {
         console.log(this.state)
         return(
             <div style={{margin: '2rem'}}>
+                <h2>Create A Trivia Game!</h2>
                 <Segment>
                     <Select placeholder="Select Category" value={this.state.category} onChange={this.handleCategory} selection options={this.categoriesArray()} />
                     <Divider horizontal>And...</Divider>
