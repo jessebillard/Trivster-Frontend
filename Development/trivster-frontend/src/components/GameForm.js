@@ -1,6 +1,6 @@
 import React from 'react';
-import { Form, TextArea } from 'semantic-ui-react'
-import { Select, Dropdown } from 'semantic-ui-react'
+// import { Form, TextArea } from 'semantic-ui-react'
+import { Select } from 'semantic-ui-react'
 import { Button } from 'semantic-ui-react'
 
 //Form should have a Create New Game Welcome
@@ -46,7 +46,13 @@ class GameForm extends React.Component {
     }
 
     onSubmit = () => {
-        this.props.submit(this.state)
+        if (!this.state.category) {
+            alert('please select a category!')
+        } else if (!this.state.difficulty) {
+            alert('please select a difficulty!')
+        } else {
+            this.props.submit(this.state)
+        }
     }
 
     categoriesArray = () => {
