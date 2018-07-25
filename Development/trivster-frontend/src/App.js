@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import { Menu } from 'semantic-ui-react'
-
-import GameContainer from './components/GameContainer'
+import { Menu } from 'semantic-ui-react';
+import GameContainer from './components/GameContainer';
 import GameForm from './components/GameForm';
 
 class App extends Component {
@@ -46,7 +44,7 @@ class App extends Component {
   }
 
   getGame = (categoryNumber, difficultySelection) => {
-    const url = 'http://localhost:3000/api/v1/games'
+    const url = 'https://immense-wave-11500.herokuapp.com/'
     const data = {category: categoryNumber, difficulty: difficultySelection.toLowerCase()}
     // debugger;
     const options = {

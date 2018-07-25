@@ -48,10 +48,10 @@ class GameContainer extends Component {
 
   questionRender = (question) => {
     return <GameCard key={question.id} 
-    incrementScore={this.incrementScore} 
-    question={question} 
-    gameId={this.props.gameId}
-    nextQuestionWhenWrong={this.nextQuestionWhenWrong}
+      incrementScore={this.incrementScore} 
+      question={question} 
+      gameId={this.props.gameId}
+      nextQuestionWhenWrong={this.nextQuestionWhenWrong}
   />
   }
 
@@ -90,10 +90,7 @@ class GameContainer extends Component {
 //  console.log(done); // --> 'done!'
 // });
 
-
-
   render() {
-    
     return (
       <div>
         {this.state.currentQuestion ? this.questionRender(this.state.currentQuestion) : ''}

@@ -1,7 +1,7 @@
 import React from 'react';
 // import { Form, TextArea } from 'semantic-ui-react'
-import { Select, Segment, Divider } from 'semantic-ui-react'
-import { Button } from 'semantic-ui-react'
+import { Select, Segment, Divider } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 
 //Form should have a Create New Game Welcome
 // -- Select Category label and dropdown button displaying categories
@@ -76,7 +76,6 @@ class GameForm extends React.Component {
                     <Select placeholder="Select Difficulty" value={this.state.difficulty} options={difficulties} selection onChange={this.handleDifficulty} />
                     <Divider horizontal>NOW</Divider>
                     <Button content="Start Game!" onClick={this.onSubmit}/>
-
                 </Segment>
             </div>
         )

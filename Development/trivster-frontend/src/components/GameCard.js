@@ -14,9 +14,9 @@ class GameCard extends React.Component {
     }
   }
 
-  componentDidMount() {
-    // setTimeout here?
-  }
+  // componentDidMount() {
+  //   // setTimeout here?
+  // }
 
   shuffle = (array) => {
     for (var i = array.length - 1; i > 0; i--) {
