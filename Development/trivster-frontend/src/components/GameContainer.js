@@ -65,31 +65,6 @@ class GameContainer extends Component {
     })
   }
 
-  // questionDelayRender = (questions) => {
-  //   // for (let i = 0; i < questions.length; i++) {
-  //   //   let promise = new Promise()
-  //   //   setTimeout(this.questionRender(questions[i]), 5000)
-  //   // }
-  // }
-
-//set a timeout method to increment release of gameCards
-// show correct or incorrect answers
-// show total score
-// play again?
-
-// function x() {
-//   var promise = new Promise(function(resolve, reject) {
-//     window.setTimeout(function() {
-//       resolve('done!');
-//     });
-//   });
-//   return promise;
-// }
-
-// x().then(function(done) {
-//  console.log(done); // --> 'done!'
-// });
-
   render() {
     return (
       <div>
