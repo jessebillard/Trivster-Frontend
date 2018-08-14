@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
 import GameContainer from './components/GameContainer';
 import GameForm from './components/GameForm';
+import './App.css';
 
 class App extends Component {
   constructor() {
@@ -62,10 +63,6 @@ class App extends Component {
       questions: response.slice(0, 10)
       })
     )
-  }
-
-  componentDidMount() {
-    // this.getGame()
   }
 
   gameFormSubmit = (data) => {

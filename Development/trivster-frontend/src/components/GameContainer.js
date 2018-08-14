@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GameCard from './GameCard'
 import ScoreCard from './ScoreCard';
-
+import { Modal, Button } from 'semantic-ui-react'
 
 
 class GameContainer extends Component {
@@ -10,7 +10,8 @@ class GameContainer extends Component {
     super() 
     this.state = {
       score: 0,
-      currentQuestion: ''
+      currentQuestion: '',
+      modalOpen: false
     }
   }
 
@@ -42,8 +43,11 @@ class GameContainer extends Component {
   }
 
   playAgain = () => {
-    alert(`Your Final Score Is: ${this.state.score} / 10`)
-    this.props.resetGame()
+    // alert(`Your Final Score Is: ${this.state.score} / 10`)
+    this.setState({
+      modalOpen: true
+    })
+    // this.props.resetGame()
   }
 
   questionRender = (question) => {
@@ -65,9 +69,24 @@ class GameContainer extends Component {
     })
   }
 
+  closeModal = () => {
+    this.setState({
+      modalOpen: false
+    }, () => this.props.resetGame())
+  }
+
   render() {
     return (
       <div>
+        <Modal dimmer={"inverted"} id="final-score-modal" centered size="mini" open={this.state.modalOpen}>                                    
+            <Modal.Header>Way 2 Go Trivster!</Modal.Header>
+            <Modal.Content>
+                <p>Your Score is: {this.state.score}/10</p>
+            </Modal.Content>
+            <Modal.Actions>                                    
+                <Button positive onClick={this.closeModal} icon='checkmark' labelPosition='right' content='Got it!' />
+            </Modal.Actions>                                    
+        </Modal>
         {this.state.currentQuestion ? this.questionRender(this.state.currentQuestion) : ''}
         <ScoreCard score={this.state.score} />
     </div>
