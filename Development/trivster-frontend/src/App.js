@@ -56,13 +56,17 @@ class App extends Component {
         body: JSON.stringify(data),
     }
     fetch(url, options)
-    .then( (resp) => resp.json())
-    .then( (response) =>
-      this.setState({
-      gameId: response[10].game_id,
-      questions: response.slice(0, 10)
-      })
-    )
+    .then( (resp) => resp.json())    
+    .then( (response) => {
+      if (!response[10]) {
+        alert("There are not enough questions to this category and difficulty, please select differently.")
+      } else {
+          this.setState({
+          gameId: response[10].game_id,
+          questions: response.slice(0, 10)
+        })
+      }
+    })
   }
 
   gameFormSubmit = (data) => {
