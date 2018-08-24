@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Menu, Transition } from 'semantic-ui-react';
+import { Transition } from 'semantic-ui-react';
 import GameContainer from './components/GameContainer';
 import GameForm from './components/GameForm';
+import Menu from './components/Menu'
 import './App.css';
 
 class App extends Component {
@@ -92,11 +93,12 @@ class App extends Component {
   render() {    
     return (
       <div className="App">
-        <Transition visible={true} transitionOnMount={true} >
-          <Menu borderless inverted size="large">
+        
+          <Menu/>
+          {/* <Menu borderless inverted size="large">
             <Menu.Item name="Trivster!"/>
-          </Menu>
-        </Transition>
+          </Menu> */}
+        
         {!this.state.gameId ? <GameForm submit={this.gameFormSubmit} categories={this.categories}/> : '' }
         {/* Render game container if questions or gameId exist */}
         {this.state.gameId ? <GameContainer questions={this.state.questions} resetGame={this.resetGame} gameId={this.state.gameId}/> : '' }

@@ -86,7 +86,7 @@ class GameForm extends React.Component {
         //     }
         //   };
         return(
-            <Transition visible={true} transitionOnMount={true} >
+            <Transition duration={3000} visible={true} transitionOnMount={true} >
                 <div style={{margin: '2rem'}}>
                         <h2>Create A Trivia Game!</h2>
                         <Segment>
