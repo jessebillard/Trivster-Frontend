@@ -78,15 +78,17 @@ class GameContainer extends Component {
   render() {
     return (
       <div>
-        <Modal dimmer={"inverted"} id="final-score-modal" centered size="mini" open={this.state.modalOpen}>                                    
-            <Modal.Header>Way 2 Go Trivster!</Modal.Header>
-            <Modal.Content>
-                <p>Your Score is: {this.state.score}/10</p>
-            </Modal.Content>
-            <Modal.Actions>                                    
-                <Button positive onClick={this.closeModal} icon='checkmark' labelPosition='right' content='Got it!' />
-            </Modal.Actions>                                    
-        </Modal>
+       
+          <Modal dimmer={"inverted"} className="modal" size="mini" open={this.state.modalOpen}>                                    
+              <Modal.Header>Way 2 Go Trivster!</Modal.Header>
+              <Modal.Content>
+                  <p>Your Score is: {this.state.score}/10</p>
+              </Modal.Content>
+              <Modal.Actions>                                    
+                  <Button positive onClick={this.closeModal} icon='checkmark' labelPosition='right' content='Got it!' />
+              </Modal.Actions>                                    
+          </Modal>
+        
         {this.state.currentQuestion ? this.questionRender(this.state.currentQuestion) : ''}
         <ScoreCard score={this.state.score} />
     </div>

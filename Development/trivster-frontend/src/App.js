@@ -89,11 +89,10 @@ class App extends Component {
     })
   }
 
-  render() {
-    // console.log(this.state)
+  render() {    
     return (
       <div className="App">
-        <Menu inverted>
+        <Menu inverted size="large">
           <Menu.Item name="Trivster!"/>
         </Menu>
         {!this.state.gameId ? <GameForm submit={this.gameFormSubmit} categories={this.categories}/> : '' }

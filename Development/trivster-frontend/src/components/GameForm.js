@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Form, TextArea } from 'semantic-ui-react'
-import { Select, Segment, Divider } from 'semantic-ui-react';
+import { Select, Segment, Divider, Modal } from 'semantic-ui-react';
 import { Button } from 'semantic-ui-react';
 
 //Form should have a Create New Game Welcome
@@ -14,7 +14,8 @@ class GameForm extends React.Component {
         this.state = {
             category: '',
             difficulty: '',
-            
+            modalOpen: false,
+            modalMessage: ''
         }
     }
 
@@ -47,9 +48,17 @@ class GameForm extends React.Component {
 
     onSubmit = () => {
         if (!this.state.category) {
-            alert('please select a category!')
+            // alert('please select a category!')
+            this.setState({
+                modalOpen: true,
+                modalMessage: "Please select a category!"
+            })
         } else if (!this.state.difficulty) {
-            alert('please select a difficulty!')
+            // alert('please select a difficulty!')
+            this.setState({
+                modalOpen: true,
+                modalMessage: "Please select a difficulty!"
+            })
         } else {
             this.props.submit(this.state)
         }
@@ -63,10 +72,19 @@ class GameForm extends React.Component {
         return newCategories
     }
 
+    closeModal = () => {
+        this.setState({
+            modalOpen: false
+        })
+    }
 
     render() {
         const difficulties = [{text: "Easy", value:"Easy"}, {text: "Medium", value:"Medium"}, {text: "Hard", value:"Hard"}]
-        console.log(this.state)
+        // const inlineStyle = {
+        //     modal : {
+        //       marginBottom: '118px !important',              
+        //     }
+        //   };
         return(
             <div style={{margin: '2rem'}}>
                 <h2>Create A Trivia Game!</h2>
@@ -77,6 +95,17 @@ class GameForm extends React.Component {
                     <Divider horizontal>NOW</Divider>
                     <Button content="Start Game!" onClick={this.onSubmit}/>
                 </Segment>
+                <div className="modal">
+                    <Modal dimmer={"inverted"} size="mini" open={this.state.modalOpen}>                                    
+                        <Modal.Header>Whoops!</Modal.Header>
+                        <Modal.Content>
+                            <p>Please enter a {this.state.modalMessage}</p>
+                        </Modal.Content>
+                        <Modal.Actions>                                    
+                            <Button positive onClick={this.closeModal} icon='checkmark' labelPosition='right' content='Got it!' />
+                        </Modal.Actions>                                    
+                    </Modal> 
+                </div>
             </div>
         )
     }
