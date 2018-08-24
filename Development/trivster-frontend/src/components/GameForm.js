@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Form, TextArea } from 'semantic-ui-react'
-import { Select, Segment, Divider, Modal } from 'semantic-ui-react';
+import { Select, Segment, Divider, Modal, Transition } from 'semantic-ui-react';
 import { Button } from 'semantic-ui-react';
 
 //Form should have a Create New Game Welcome
@@ -86,27 +86,29 @@ class GameForm extends React.Component {
         //     }
         //   };
         return(
-            <div style={{margin: '2rem'}}>
-                <h2>Create A Trivia Game!</h2>
-                <Segment>
-                    <Select placeholder="Select Category" value={this.state.category} onChange={this.handleCategory} selection options={this.categoriesArray()} />
-                    <Divider horizontal>And...</Divider>
-                    <Select placeholder="Select Difficulty" value={this.state.difficulty} options={difficulties} selection onChange={this.handleDifficulty} />
-                    <Divider horizontal>NOW</Divider>
-                    <Button content="Start Game!" onClick={this.onSubmit}/>
-                </Segment>
-                <div className="modal">
-                    <Modal dimmer={"inverted"} size="mini" open={this.state.modalOpen}>                                    
-                        <Modal.Header>Whoops!</Modal.Header>
-                        <Modal.Content>
-                            <p>Please enter a {this.state.modalMessage}</p>
-                        </Modal.Content>
-                        <Modal.Actions>                                    
-                            <Button positive onClick={this.closeModal} icon='checkmark' labelPosition='right' content='Got it!' />
-                        </Modal.Actions>                                    
-                    </Modal> 
+            <Transition visible={true} transitionOnMount={true} >
+                <div style={{margin: '2rem'}}>
+                        <h2>Create A Trivia Game!</h2>
+                        <Segment>
+                            <Select placeholder="Select Category" value={this.state.category} onChange={this.handleCategory} selection options={this.categoriesArray()} />
+                            <Divider horizontal>And...</Divider>
+                            <Select placeholder="Select Difficulty" value={this.state.difficulty} options={difficulties} selection onChange={this.handleDifficulty} />
+                            <Divider horizontal>NOW</Divider>
+                            <Button content="Start Game!" onClick={this.onSubmit}/>
+                        </Segment>
+                        <div className="modal">
+                            <Modal dimmer={"inverted"} size="mini" open={this.state.modalOpen}>                                    
+                                <Modal.Header>Whoops!</Modal.Header>
+                                <Modal.Content>
+                                    <p>Please enter a {this.state.modalMessage}</p>
+                                </Modal.Content>
+                                <Modal.Actions>                                    
+                                    <Button positive onClick={this.closeModal} icon='checkmark' labelPosition='right' content='Got it!' />
+                                </Modal.Actions>                                    
+                            </Modal> 
+                        </div>
                 </div>
-            </div>
+            </Transition>
         )
     }
 

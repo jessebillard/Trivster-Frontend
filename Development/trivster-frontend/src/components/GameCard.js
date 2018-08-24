@@ -1,5 +1,6 @@
 import React from 'react';
 import AnswerButton from './answerButton';
+import { Transition } from 'semantic-ui-react'
 
 class GameCard extends React.Component {
   // console.log(props)
@@ -53,20 +54,22 @@ class GameCard extends React.Component {
     console.log(this.props.question)
     const answerArray = this.generateAnswerButtons()
     return(
-      <div>
-        <h3 dangerouslySetInnerHTML={{__html: this.props.question.question}} />
-        {/* somehow shuffle these answer buttons! */}
-        {/* get them to use dangerouslySetInnerHTML to format answers correctly */}
-        {answerArray[0]}
-        {answerArray[1]}
-        {answerArray[2]}
-        {answerArray[3]}
-        {/* <AnswerButton onClick={this.answerClick} answer={this.props.question.answer}/>
-        <AnswerButton onClick={this.answerClick} incorrectAnswer={this.props.question.incorrect_answers[0]} />
-        <AnswerButton onClick={this.answerClick} incorrectAnswer={this.props.question.incorrect_answers[1]} />
-        <AnswerButton onClick={this.answerClick} incorrectAnswer={this.props.question.incorrect_answers[2]} /> */}
-        {/* <p dangerouslySetInnerHTML={{__html: this.props.question.answer}} /> */}
-      </div>
+      <Transition visible={true} transitionOnMount={true} >
+        <div>
+          <h3 dangerouslySetInnerHTML={{__html: this.props.question.question}} />
+          {/* somehow shuffle these answer buttons! */}
+          {/* get them to use dangerouslySetInnerHTML to format answers correctly */}
+          {answerArray[0]}
+          {answerArray[1]}
+          {answerArray[2]}
+          {answerArray[3]}
+          {/* <AnswerButton onClick={this.answerClick} answer={this.props.question.answer}/>
+          <AnswerButton onClick={this.answerClick} incorrectAnswer={this.props.question.incorrect_answers[0]} />
+          <AnswerButton onClick={this.answerClick} incorrectAnswer={this.props.question.incorrect_answers[1]} />
+          <AnswerButton onClick={this.answerClick} incorrectAnswer={this.props.question.incorrect_answers[2]} /> */}
+          {/* <p dangerouslySetInnerHTML={{__html: this.props.question.answer}} /> */}
+        </div>
+      </Transition>
     )
   }
 }
